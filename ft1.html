@@ -40,6 +40,9 @@ var app = new function() {
       for (i = 0; i < this.words.length; i++) {
         data += '<tr>';
         data += '<td>' + this.words[i] + '</td>';
+        data += '<td> <button onclick="app.Edit(' + i + ')">수정</button> </td>';
+        data += '<td> <button onclick="app.Delete(' + i + ')">삭제</button> </td>';
+        data += '</tr>';
   
       }
     }
@@ -51,6 +54,7 @@ var app = new function() {
 }
     
 app.FetchAll();
+
 
 </script>
 </body>
