@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>final test CRUD progrem</title>
+</head>
+<body>
+
+<form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
+  <input type="text" id="add-name" placeholder="모르는 영단어">
+  <input type="submit" value="영단어 추가">
+</form>
+
+
+<p id="word"></p>
+
+
+<table>
+  <tr>
+    <th>모르는 영단어 암기노트</th>
+  </tr>
+    <tbody id="words">
+    </tbody>
+</table>
+
+
+<script>
+var app = new function() {
+
+  this.el = document.getElementById('words');
+
+  this.words = ['premissrs 구역', 'afford 제공하다', 'bite 물다', 'coworker  협력자', 'eggplant 가지', 'chairman 의장', 'souvenir 기념품', 'Introverted 내향적인', 'Extrovert 외향적인'];
+
+
+  
+  this.FetchAll = function() {
+    var data = '';
+
+    if (this.words.length > 0) {
+      for (i = 0; i < this.words.length; i++) {
+        data += '<tr>';
+        data += '<td>' + this.words[i] + '</td>';
+  
+      }
+    }
+
+    return this.el.innerHTML = data;
+  };
+
+ 
+}
+    
+app.FetchAll();
+
+</script>
+</body>
+</html>
