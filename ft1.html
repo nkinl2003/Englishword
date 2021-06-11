@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>final test CRUD progrem</title>
+  <title>모르는 영단어 암기노트</title>
 </head>
 <body>
 
@@ -11,9 +11,14 @@
   <input type="submit" value="영단어 추가">
 </form>
 
+<div id="spoiler" role="aria-hidden">
+  <form action="javascript:void(0);" method="POST" id="saveEdit">
+    <input type="text" id="edit-name">
+    <input type="submit" value="수정" /> <a onclick="CloseInput()" aria-label="Close">&#10006;</a>
+  </form>
+</div>
 
 <p id="word"></p>
-
 
 <table>
   <tr>
@@ -23,15 +28,12 @@
     </tbody>
 </table>
 
-
 <script>
 var app = new function() {
 
   this.el = document.getElementById('words');
 
   this.words = ['premissrs 구역', 'afford 제공하다', 'bite 물다', 'coworker  협력자', 'eggplant 가지', 'chairman 의장', 'souvenir 기념품', 'Introverted 내향적인', 'Extrovert 외향적인'];
-
-
   
   this.FetchAll = function() {
     var data = '';
@@ -43,19 +45,35 @@ var app = new function() {
         data += '<td> <button onclick="app.Edit(' + i + ')">수정</button> </td>';
         data += '<td> <button onclick="app.Delete(' + i + ')">삭제</button> </td>';
         data += '</tr>';
-  
       }
     }
-
+      
     return this.el.innerHTML = data;
   };
 
- 
+  this.Add = function () {
+    el = document.getElementById('add-name');
+
+    var notknowword = el.value;
+
+    if (notknowword) {
+      this.words.push(notknowword.trim());
+      el.value = '';
+      this.FetchAll();
+    }
+  };
+
+  this.Edit = function (item) {
+    var el = document.getElementById('edit-name');
+    el.value = this.words[item];
+    document.getElementById('spoiler').style.display = 'block';
+    self = this;
+  }
+  
 }
-    
+
 app.FetchAll();
-
-
+    
 </script>
 </body>
 </html>
