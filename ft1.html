@@ -60,7 +60,7 @@ var app = new function() {
       this.words.push(notknowword.trim());
       el.value = '';
       this.FetchAll();
-    }
+    
   };
 
   this.Edit = function (item) {
@@ -72,6 +72,7 @@ var app = new function() {
     document.getElementById('saveEdit').onsubmit = function() {
       var notknowword = el.value;
 
+
       if (notknowword) {
         self.words.splice(item, 1, notknowword.trim());
         self.FetchAll();
@@ -79,12 +80,21 @@ var app = new function() {
       }
     }
   }
-  
+    this.Delete = function (item) {
+    this.words.splice(item, 1);
+    this.FetchAll();
+  }
 }
+
+
+
+     
+  
+
+
 
 app.FetchAll();
     
 </script>
 </body>
 </html>
-
