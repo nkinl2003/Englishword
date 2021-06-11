@@ -34,6 +34,20 @@ var app = new function() {
   this.el = document.getElementById('words');
 
   this.words = ['premissrs 구역', 'afford 제공하다', 'bite 물다', 'coworker  협력자', 'eggplant 가지', 'chairman 의장', 'souvenir 기념품', 'Introverted 내향적인', 'Extrovert 외향적인'];
+    
+    this.Count = function(data) {
+        var el   = document.getElementById('word');
+        var name = 'notknowword';
+
+        if (data) {
+          if (data > 1) {
+            name = 'words';
+          }
+          el.innerHTML = data + ' ' + name ;
+        } else {
+          el.innerHTML = 'No ' + name;
+        }
+      };
   
   this.FetchAll = function() {
     var data = '';
@@ -48,19 +62,19 @@ var app = new function() {
       }
     }
       
+    this.Count(this.words.length);
     return this.el.innerHTML = data;
   };
 
   this.Add = function () {
     el = document.getElementById('add-name');
-
     var notknowword = el.value;
 
     if (notknowword) {
       this.words.push(notknowword.trim());
       el.value = '';
       this.FetchAll();
-    
+    }
   };
 
   this.Edit = function (item) {
@@ -71,7 +85,6 @@ var app = new function() {
 
     document.getElementById('saveEdit').onsubmit = function() {
       var notknowword = el.value;
-
 
       if (notknowword) {
         self.words.splice(item, 1, notknowword.trim());
@@ -85,13 +98,6 @@ var app = new function() {
     this.FetchAll();
   }
 }
-
-
-
-     
-  
-
-
 
 app.FetchAll();
     
