@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>final test CRUD progrem</title>
+  <title>모르는 영단어 암기노트</title>
 </head>
 <body>
 
@@ -43,19 +43,27 @@ var app = new function() {
         data += '<td> <button onclick="app.Edit(' + i + ')">수정</button> </td>';
         data += '<td> <button onclick="app.Delete(' + i + ')">삭제</button> </td>';
         data += '</tr>';
-  
       }
     }
 
     return this.el.innerHTML = data;
   };
 
- 
-}
+  this.Add = function () {
+    el = document.getElementById('add-name');
     
+    var notknowword = el.value;
+
+    if (notknowword) {
+      this.words.push(notknowword.trim());
+      el.value = '';
+      this.FetchAll();
+    }
+  };
+}
+
 app.FetchAll();
-
-
 </script>
 </body>
 </html>
+
