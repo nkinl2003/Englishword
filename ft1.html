@@ -54,7 +54,6 @@ var app = new function() {
   this.Add = function () {
     el = document.getElementById('add-name');
 
-
     var notknowword = el.value;
 
     if (notknowword) {
@@ -69,6 +68,16 @@ var app = new function() {
     el.value = this.words[item];
     document.getElementById('spoiler').style.display = 'block';
     self = this;
+
+    document.getElementById('saveEdit').onsubmit = function() {
+      var notknowword = el.value;
+
+      if (notknowword) {
+        self.words.splice(item, 1, notknowword.trim());
+        self.FetchAll();
+        CloseInput();
+      }
+    }
   }
   
 }
@@ -78,10 +87,4 @@ app.FetchAll();
 </script>
 </body>
 </html>
-
-    
-   
-
-
-
 
